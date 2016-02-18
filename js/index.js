@@ -57,8 +57,24 @@ window.onload=function(){
         ctx.arc(zx,zy,15,0,Math.PI*2);
         ctx.fill();
     }
-    luozi(3,3,true);
-    luozi(4,7,false);
+
+
+    var qizi={}
+
+    var kaiguan=true;
+    canvas.onclick=function(e){
+    	console.log(e.offsetX);
+    	console.log(Math.round((e.offsetX-20.5)/40));
+    	var x=Math.round((e.offsetX-20.5)/40);
+    	var y=Math.round((e.offsetY-20.5)/40);
+        
+        if(qizi[x+'_'+y]){return};
+
+    	luozi(x,y,kaiguan);
+    	qizi[x+'_'+y]=true;
+    	kaiguan=!kaiguan;
+
+    }
 	 
 
 
