@@ -1,0 +1,11 @@
+#canvas{
+	/*border:1px solid black;*/
+	display: block;
+	box-shadow:0 0 3px black;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin-top:-300px;
+	margin-left:-300px;
+	background: orange;  
+}
