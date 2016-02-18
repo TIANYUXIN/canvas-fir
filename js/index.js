@@ -82,7 +82,11 @@ window.onload=function(){
     		var x=i.split('_')[0];
     		var y=i.split('_')[1];
     		luozi(x,y,(qizi[i]=='black')?true:false);
+    		kaiguan=!kaiguan; 
     	}
+    	
+    	
+    	
     }
     canvas.ondblclick=function(ev){
        ev.stopPropagation();
