@@ -58,23 +58,44 @@ window.onload=function(){
         ctx.fill();
     }
 
-
+    // '4_5':'black'
     var qizi={}
 
     var kaiguan=true;
     canvas.onclick=function(e){
-    	console.log(e.offsetX);
-    	console.log(Math.round((e.offsetX-20.5)/40));
+    	// console.log(e.offsetX);
+    	// console.log(Math.round((e.offsetX-20.5)/40));
     	var x=Math.round((e.offsetX-20.5)/40);
     	var y=Math.round((e.offsetY-20.5)/40);
         
         if(qizi[x+'_'+y]){return};
 
     	luozi(x,y,kaiguan);
-    	qizi[x+'_'+y]=true;
+    	qizi[x+'_'+y]=kaiguan?'black':'white';
     	kaiguan=!kaiguan;
-
+        localStorage.data=JSON.stringify(qizi);
     }
+    
+    if(localStorage.data){
+    	qizi=JSON.parse(localStorage.data);
+    	for(var i in qizi){
+    		var x=i.split('_')[0];
+    		var y=i.split('_')[1];
+    		luozi(x,y,(qizi[i]=='black')?true:false);
+    	}
+    }
+    canvas.ondblclick=function(ev){
+       ev.stopPropagation();
+    }
+    document.ondblclick=function(){
+    	localStorage.clear();
+    	location.reload();
+    }
+
+
+ // json.stringify()数组转换为字符串
+ // json.parse()     
+
 	 
 
 
