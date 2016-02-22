@@ -142,14 +142,14 @@ window.onload=function(){
        
        tx=x;ty=y;while(shuju[xy2id(tx-1,ty)]){tx--;hang++};
        tx=x;ty=y;while(shuju[xy2id(tx+1,ty)]){tx++;hang++};
-       console.log(hang);
+       //console.log(hang);
        if(hang>=5){
         return true;
        }
 
-       tx=x;ty=y;while(shuju[xy2id(tx,ty-1)]){tx--;shu++};
-       tx=x;ty=y;while(shuju[xy2id(tx,ty+1)]){tx++;shu++};
-       //console.log(shu);
+       tx=x;ty=y;while(shuju[xy2id(tx,ty-1)]){ty--;shu++};
+       tx=x;ty=y;while(shuju[xy2id(tx,ty+1)]){ty++;shu++};
+       console.log(shu);
        if(shu>=5){
         return true;
        }
