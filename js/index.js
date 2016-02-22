@@ -94,7 +94,6 @@ window.onload=function(){
 
     	luozi(x,y,kaiguan);
     	qizi[x+'_'+y]=kaiguan?'black':'white';
-
         if(kaiguan){
             if(panduan(x,y,'black')){
                 alert('黑棋赢');
@@ -193,11 +192,46 @@ window.onload=function(){
     canvas.ondblclick=function(ev){
        ev.stopPropagation();
     }
-    document.ondblclick=function(){
+    begin.onclick=function(){
     	localStorage.clear();
     	location.reload();
     }
-
+    //悔棋
+    back.onclick=function(){
+        huaqipang();
+        var colorarr=[];
+        var weizhiarr=[];
+        data=JSON.parse(localStorage.data);
+        if(JSON.stringify(data)==0){
+            back.onclick=null;
+            return;
+        }
+        for(var i in data){
+            weizhiarr.push(i);
+            colorarr.push(data[i]);
+        }
+        weizhiarr.pop();
+        colorarr.pop();
+        for(var i=0;i<colorarr.length;i++){
+            var x=weizhiarr[i].split("_")[0];
+            var y=weizhiarr[i].split("_")[1];
+            luozi(x,y,(colorarr[i]=='black')?true:false);
+            if(((colorarr[i]=='black')?true:false)){
+               localStorage.x="1";
+            }else{
+                localStorage.removeItem("x");
+            }
+        }
+        //更新localStorage
+        data={};
+        for(var i=0;i<weizhiarr.length;i++){
+            var x=weizhiarr[i].split("_")[0];
+            var y=weizhiarr[i].split("_")[1];
+            data[x+'_'+y]=colorarr[i];
+        }
+        localStorage.data=JSON.stringify(data);
+        location.reload();
+    }
 
 
 
